@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { JOBS } from './assets/data';
 import { actions } from './src/actions/index';
-
 import Category from './src/components/Category';
 
 const mapStateToProps = (state) => ({
@@ -21,16 +20,21 @@ class App extends Component {
 
   render() {
     const { jobs } = this.props;
-    console.log(jobs);
     return (
-      <View>
-        {Object.keys(jobs).map((key) => (
-          <Category categoryName={key} />
+      <ScrollView style={styles.appContainer}>
+        {Object.keys(jobs).map((key, index) => (
+          <Category key={index} categoryName={key} />
         ))}
-        <Text>Jobs</Text>
-      </View>
+      </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  appContainer: {
+    padding: 20,
+    backgroundColor: '#FFF',
+  },
+});
 
 export default connect(mapStateToProps)(App);
