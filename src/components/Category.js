@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Job from './Job';
 
@@ -30,6 +31,11 @@ class Category extends Component {
     );
   }
 }
+
+Category.propTypes = {
+  categoryName: PropTypes.string.isRequired,
+  jobs: PropTypes.object.isRequired,
+};
 
 const styles = StyleSheet.create({
   categoryContainer: {

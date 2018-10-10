@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { JOBS } from './assets/data';
 import { actions } from './src/actions/index';
@@ -37,5 +38,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
 });
+
+App.propTypes = {
+  jobs: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps)(App);

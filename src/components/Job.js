@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 const regex = /^(.*?)[.?!]\s/;
 
-class Category extends Component {
+class Job extends Component {
   render() {
     const { job } = this.props;
 
@@ -23,6 +24,10 @@ class Category extends Component {
     );
   }
 }
+
+Job.propTypes = {
+  job: PropTypes.object,
+};
 
 const styles = StyleSheet.create({
   jobContainer: {
@@ -61,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Category;
+export default Job;
