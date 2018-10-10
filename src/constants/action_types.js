@@ -1,4 +1,3 @@
 export const action_types = {
-  ADD_JOBS: 'ADD_JOBS',
-  ADD_CATEGORIES: 'ADD_CATEGORIES',
+  ADD_JOB: 'ADD_JOB',
 };

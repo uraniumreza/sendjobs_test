@@ -15,7 +15,7 @@ class Category extends Component {
     return (
       <View>
         <Text>{categoryName}</Text>
-        {jobs.filter((job) => job.category === categoryName).map((job) => (
+        {jobs[categoryName].map((job) => (
           <Job job={job} />
         ))}
       </View>
