@@ -32,7 +32,8 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   appContainer: {
-    padding: 20,
+    paddingRight: 5,
+    padding: 15,
     backgroundColor: '#FFF',
   },
 });

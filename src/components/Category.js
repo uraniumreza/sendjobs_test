@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text } from 'react-native';
+import { View, FlatList, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import Job from './Job';
@@ -9,12 +9,18 @@ const mapStateToProps = (state) => ({
 });
 
 class Category extends Component {
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   render() {
     const { categoryName, jobs } = this.props;
     const categorizedJobs = jobs[categoryName];
     return (
-      <View>
-        <Text>{categoryName}</Text>
+      <View style={styles.categoryContainer}>
+        <Text style={styles.categoryTitle}>
+          {this.capitalizeFirstLetter(categoryName)}
+        </Text>
         <FlatList
           data={categorizedJobs}
           renderItem={({ item }) => <Job job={item} />}
@@ -24,5 +30,18 @@ class Category extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  categoryContainer: {
+    marginBottom: 5,
+  },
+  categoryTitle: {
+    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+    fontSize: 25,
+    textAlign: 'center',
+    marginBottom: 7,
+  },
+});
 
 export default connect(mapStateToProps)(Category);
