@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import Job from './Job';
@@ -11,13 +11,15 @@ const mapStateToProps = (state) => ({
 class Category extends Component {
   render() {
     const { categoryName, jobs } = this.props;
-
+    const categorizedJobs = jobs[categoryName];
     return (
       <View>
         <Text>{categoryName}</Text>
-        {jobs[categoryName].map((job) => (
-          <Job job={job} />
-        ))}
+        <FlatList
+          data={categorizedJobs}
+          renderItem={({ item }) => <Job job={item} />}
+          keyExtractor={(item) => item._id}
+        />
       </View>
     );
   }
