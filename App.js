@@ -1,49 +1,36 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { connect } from 'react-redux';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import { JOBS } from './assets/data';
+import { actions } from './src/actions/index';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+import Category from './src/components/Category';
+
+const mapStateToProps = (state) => ({
+  jobs: state.jobs,
+  categories: state.categories,
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+class App extends Component {
+  componentDidMount() {
+    const { dispatch, categories } = this.props;
+    JOBS.map((job) => {
+      dispatch(actions.addCategory(job.category));
+      dispatch(actions.addJob(job));
+    });
+  }
+
   render() {
+    const { jobs, categories } = this.props;
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View>
+        {categories.map((category) => (
+          <Category categoryName={category} />
+        ))}
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default connect(mapStateToProps)(App);
