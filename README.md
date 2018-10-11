@@ -14,7 +14,4 @@ react-native run-ios
 
 ## Screenshots
 
-:-------------------------:|:-------------------------:
-Sample 1 | Sample 2
-:-------------------------:|:-------------------------:
 ![](https://github.com/uraniumreza/sendjobs_test/blob/screenshot/assets/1.png) | ![](https://github.com/uraniumreza/sendjobs_test/blob/screenshot/assets/2.png)
